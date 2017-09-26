@@ -1,0 +1,13 @@
+public class Ex1_drop{
+    public static void main(String args[]){
+
+	String liste[] = new String[8]();
+	Scanner sc = new Scanner(System.in);
+	int n=10;
+	while(n != 0){
+	    System.out.print"Entrez une valeur: ");
+	
+	    n--;
+	}
+    }
+}
