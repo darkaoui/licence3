@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+#ifndef NB_ELEM
+#define NB_ELEM 5
+#endif
+
+void permutation(int n, int tab[]){
+  int tmp = tab[0];
+  tab[0]  = tab[n-1];
+  tab[n-1]= tmp;
+}
+
+void saisieValeur(int tab[]){
+  printf("saisir une suite d'entier: \n");
+  int inc =0;
+  int n =0;
+  while(inc < NB_ELEM){
+    printf("entrez une valeur:");
+    scanf("%d",&n);
+    tab[inc] = n;
+    inc++;
+  }
+}
+
+void saisiePermutation(int tab[]){
+  int inc =0;
+  int n   =0;
+  printf("saisir la suite de la permution:(1-5)\n");
+  while(inc<NB_ELEM){
+    scanf("%d",&n);
+    permutation(n,tab);
+    inc++;
+  }
+}
+
+int main(){
+  
+  int tab[NB_ELEM];
+  saisieValeur(tab);
+  saisiePermutation(tab);
+  
+  printf("les valeurs apres permutation\n");
+  for(int i=0; i<NB_ELEM; i++){
+    printf(" %d",tab[i]);
+  }
+  
+  printf("\n");
+}
