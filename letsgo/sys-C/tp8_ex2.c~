@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+const int  DIRECTORY_LENGTH = 1024;
+
+
+void pendir(char *dir){
+  DIR *d = opendir(dir);
+  if(d == NULL){
+    perror("Echec d'ouverture de dossier");
+  }else
+    closedir(d);
+}
+
+void readdirectory(const char *link){
+  
+}
+
+int main(){
+  char ch[DIRECTORY_LENGTH];
+  
+  getcwd(ch,DIRECTORY_LENGTH);
+  printf("rep: %s\n",ch);
+
+  DIR* dir = opendir(ch);
+
+  if(dir == NULL){
+    perror("Echec ouverture de dossier\n");
+  }
+
+  struct dirent* d;
+  while( (d = readdir(dir)) != NULL )
+    printf("names: %s\n",d->d_name);
+
+  if(d != NULL)
+    printf("dirname: %s\n",d->d_name);
+}

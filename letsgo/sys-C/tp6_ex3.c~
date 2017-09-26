@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+void copy(FILE *file, FILE *image){
+  char c ;
+
+  fputc('1',image);
+  fputc(' ',image);
+
+  int line =1;
+  
+  while((c=fgetc(file)) != EOF){
+    if(c == '\n'){
+      fputc('\n',image);
+      fprintf(image,"%d",(++line));
+    }else
+      fputc(c,image);
+  }
+  
+}
+
+int main(){
+  
+  FILE* file  = fopen("file","r");
+  FILE* image = fopen("image","w");
+
+  copy(file,image);
+
+  printf("bingo bingo\n");
+  
+}

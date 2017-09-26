@@ -1,0 +1,13 @@
+all: myecho
+
+myecho: strlib.o myecho.o
+	gcc -o myecho strlib.o myecho.o
+
+strlib.o: strlib.c
+	gcc -o strlib.o -c strlib.c -Wall
+
+myecho.o: myecho.c strlib.h
+	gcc -o myecho.o -c myecho.c -Wall
+
+clean:
+	rm -rf *.o

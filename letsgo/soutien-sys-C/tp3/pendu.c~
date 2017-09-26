@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+int main(){
+  
+  FILE *fd = fopen("pendu.txt","r");
+
+  if(fd == NULL){
+    printf("ouverture pendu.txt impossible\n");
+    return -1;
+  }
+
+  char** memoire = malloc(sizeof(char*));
+  memoire[0] = NULL;
+  int size_mem = 1;
+  
+  char* mot = malloc(1024*sizeof(char)); // on suppose qu'un mot ne depasse 1024
+
+  while(fscanf(fd,"%s\n",mot) != EOF){
+    memoire[size_mem-1]=  mot;
+    memoire = realloc(memoire,(++size_mem)*sizeof(char*));
+  }
+
+  srand(0);
+  int choice = rand()%(size_mem-1);
+  char* strchoice = memoire[choice];
+
+  printf("%s:%d\n",strchoice,strlen(strchoice));
+
+  //compter le nombre de lettre
+  int nb_lettre =0;
+  for(int i=0; i<(int)strlen(strchoice); i++){
+
+    int j= 0;
+    
+    do{
+
+      if(strchoice[i] == strchoice[j] && j == i){
+	nb_lettre++;
+	break;
+      }
+
+      if(i == j)
+	break;
+
+      j++;
+
+      printf("%d\n",j);
+
+    }while(0);
+    
+  }
+  printf("nb lettre: %d\n",nb_lettre);
+
+  
+}

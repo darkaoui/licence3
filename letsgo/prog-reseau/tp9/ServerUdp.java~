@@ -1,0 +1,17 @@
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+public class ServerUdp{
+    public static void main(String argv[]){
+	DatagramSocket serv = new DatagrameSocket(2222);
+	
+	byte data[] = new byte[1024];
+	DatagramPaquet paquet= new DatagramePacket(data,data.length);
+	serv.receive(paquet);
+
+	String msg = new String(paquet.getData(),0,paquet.getLength());
+
+	System.out.println("le msg "+msg);
+    }
+}

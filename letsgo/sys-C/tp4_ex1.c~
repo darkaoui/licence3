@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+enum val {
+    PLUS_INFINI,MOINS_INFINI, ERREUR
+  };
+
+int division(int a, int b){
+  if(b == 0){
+    if(a>0)
+      return PLUS_INFINI;
+    if(a<0)
+      return MOINS_INFINI;
+    return ERREUR;
+  }else
+    return a/b;
+}
+
+int main(){
+
+  printf("%d", division(2,2));
+
+}

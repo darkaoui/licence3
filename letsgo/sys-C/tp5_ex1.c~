@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+
+char c1;
+char c2;
+
+int i1;
+int i2;
+
+int* pi1;
+int* pi2;
+
+
+
+int main(){
+
+
+  char mc1;
+  char mc2;
+
+  int mi1;
+  int mi2;
+
+  int* mpi1;
+  int* mpi2;
+
+  printf("%p\n", &c1);
+  printf("%p\n", &c2);
+  printf("%p\n", &i1);
+  printf("%p\n", &i2);
+  printf("%p\n", pi1);
+  printf("%p\n", pi2);
+
+  printf("%p\n", &mc1);
+  printf("%p\n", &mc2);
+  printf("%p\n", &mi1);
+  printf("%p\n", &mi2);
+  printf("%p\n", pi1);
+  printf("%p\n", pi2);
+
+}

@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void lecture(){
+  char c ;
+
+  do{
+    c= getchar();
+    printf("%c",c);
+  }while(c != EOF);
+}
+
+int main(int argc, char* argv[])
+{
+  lecture();
+}

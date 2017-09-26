@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+
+int main(){
+  const char* chaine1 = "bddddd";
+  char* chaine2 = "diallo";
+
+  strcpy(chaine2,"bingo");;
+
+  printf("1-> %s 2-> %s\n",chaine1,chaine2);
+}

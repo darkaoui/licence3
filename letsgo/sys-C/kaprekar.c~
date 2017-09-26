@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+void intToTab(int n, int tab[]){
+  tab[0] = n/1000;
+  tab[1] = (n - tab[0]*1000)/100;
+  tab[2] = (n - tab[0]*1000 - tab[1]*100)/10;
+  tab[3] = (n - tab[0]*1000 - tab[1]*100 - tab[2]*10);
+}
+
+int tabToInt(int tab[]){
+  return ta[0]*1000+tab[1]*100+tab[2]*10+tab[3];
+}
+
+int invTabToInt(int tab[]){
+  return ta[3]*1000+tab[2]*100+tab[1]*10+tab[0];
+}
+
+void croissant(int tab[], int n){
+  for(int i=0; i<n; i++){
+    for(int j=i+1; j<n; j++){
+      if(tab[i]>tab[j]){
+	int tp = tab[i];
+	tab[i] = tab[j];
+	tab[j] = tp;
+      }
+    }
+  }
+}
+
+void decroissant(int tab[]){
+  for(int i=0; i<n; i++){
+    for(int j=i+1; j<n; j++){
+      if(tab[i]<tab[j]){
+	int tp = tab[i];
+	tab[i] = tab[j];
+	tab[j] = tp;
+      }
+    }
+  }
+}
+
+int main(){
+
+  int n;
+
+  do{
+    
+    printf("Entier de 4 chiffres: ");
+    scanf("%d",&n);
+
+    if(n/10000 != 0)
+      printf("Pas un entier 4 chiffres");
+
+  }while(n/10000 != 0);
+
+  while(1){
+
+    int big   = tabToInt(decroissant(intToTab(n)));
+    int small = tabToInt(croissant(intToTab(n)));
+    int diff  = big-small;
+
+    printf("big:%d small:%d diff:%d",big,small,diff);
+    n = diff;
+  }
+}

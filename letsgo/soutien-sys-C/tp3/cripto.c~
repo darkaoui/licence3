@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char* argv[]){
+  if(argc < 3)
+    return -1;
+
+  FILE *fd = fopen(argv[2], "rb");
+
+  char* memoire = malloc(sizeof(char));
+
+  char oct;
+  int taille = strlen(argv[1]);
+
+  for(int i=0;i<taille;i++){
+    int jsec1=0;
+    int jsec2=0;
+    
+    while(fread(&oct,sizeof(oct),1,fd) == 1){
+      //on a la valeur oct
+      if(jsec1 == i+jsec2*taille){
+	memoire[strlen(memoire)-1] = oct^argv[i];
+	memoire = realloc(memoire,strlen(memoire)+1);
+	jsec2++;
+      }
+
+      jsec1++;
+    }
+  }
+
+  memoire[strlen(memoire)-1] = '\n';
+  printf("script:\n %s",memoire);
+}

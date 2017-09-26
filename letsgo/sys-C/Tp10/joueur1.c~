@@ -1,0 +1,3 @@
+int jouer(int coups, int limit){
+  return 1;
+}

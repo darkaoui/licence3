@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{
+
+  int key;
+  node *fg;
+  node *fd;
+  
+} node;
+
+void arroser(node* abr){
+  
+  if(abr->fg != NULL && arb->fd != NULL){
+    arroser(abr->fg);
+    arroser(abr->fd);
+  }
+  else{
+    
+    node* n = malloc(node);
+    node* t = malloc(node);
+    
+    n->key = 4; n->fg = NULL; n->fg = NULL;
+    t->key = 5; t->fd = NULL; t->fd = NULL;
+    
+    abr->fg  = n;
+    abr->fd  = t;
+  }
+
+}
+
+void greffer(node *a, int p[], node * b ){
+  node* n;
+
+  int stop = 0;
+  int i=0;
+
+  do{
+
+    if(p[i] == 0){
+
+      n = a->fg;
+      if(n->fg == NULL)
+	n->fg = b;
+      else
+	n = a->fg;
+      
+    }else if(p[i] == 1){
+
+      n = a->fd;
+      if(n->fd == NULL)
+	n->fd = b;
+      else
+	n = a->fd;
+    }
+    
+    i+=1;
+  }while(stop == 0);
+  
+}
+
+int main(){
+
+
+  node *n = {6,NULL,NULL};
+  
+  
+}

@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[]){
+  char* chaines = {"world","hello","wild"};
+
+  printf("taille individuelle %d \n", sizeof(*chaines));
+  qsort(chaines,3,sizeof(*chaines),strcmp);
+
+  for(int i=0; i<3; i++){
+    printf("%s\n",(chaines+i));
+  }
+}

@@ -1,0 +1,4 @@
+
+int isalpha(char c);
+
+int isnum(char c);

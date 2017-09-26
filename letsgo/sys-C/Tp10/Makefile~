@@ -1,0 +1,16 @@
+
+joueur1: joueur1.c joueur.o
+	gcc joueur.o joueur1.o
+joueur2: joueur2.o joueur.o
+	gcc joueur.o joueur2.o
+joueur3: joueur3.o joueur3.o
+	gcc joueur.o joueur3.o
+
+joueur.o: joueur.c
+	gcc -c joueur.c
+joueur1.o: joueur1.c
+	gcc -c joueur1.c
+joueur2.o: joueur2.c
+	gcc -c joueur2.c
+joueur3.o: joueur3.c
+	gcc -c joueur3.c

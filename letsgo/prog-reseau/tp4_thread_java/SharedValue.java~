@@ -1,0 +1,14 @@
+public class SharedValue{
+    public int value;
+    public SharedValue(int v){
+	value =v;
+    }
+
+    public int getValue(){
+	return value;
+    }
+
+    public void setValue(int v){
+	value = v;
+    }
+}

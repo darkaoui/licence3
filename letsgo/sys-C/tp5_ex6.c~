@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct pile_amortie{
+  int occupation;
+  int capacite;
+  int *elements;
+} pile_amortie;
+
+pile_amortie* alloue_pile_amortie(){
+  pile_amortie* p = malloc(sizeof(pile_amortie));
+  p->occupation =0;
+  p->capacite   =0;
+  return p;
+}
+
+
+void libere_pile_amortie(pile_amortie* p){
+  free(p->elements);
+  p->occupation=0;
+  p->capacite  =0;
+}
+
+void empile_pile_amortie(pile_amortie* p, int n){
+  if(p->occupation < capacite){
+    p->elements[p->occupation] = n;
+    p->occupation+=1;
+  }else{
+    
+  }
+}
+
+int depile_pile_amortie(pile_amortie* p){
+  
+}
+
+int main(){
+  
+}
