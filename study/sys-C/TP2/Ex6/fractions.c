@@ -1,7 +1,7 @@
-#inlcude "fractions.h"
+#include "fractions.h"
 
 void affiche_fraction(fraction f){
-  printf("%d/%d (%f)\n",f.numerateur,f.denominateur,(f.numerateur/f.denominateur));
+  printf("%d/%d (%f)\n",f.numerateur,f.denominateur,((float)(f.numerateur)/f.denominateur));
 }
 
 //on supposera que a<b
@@ -18,7 +18,11 @@ fraction reduit(fraction f){
   a = f.numerateur;
   b = f.denominateur;
 
-  if(a == b) return 1;
+  if(a == b){
+    f.numerateur    =1;
+    f.denominateur =1;
+    return f;
+  }
 
   int pg;
   
@@ -57,14 +61,14 @@ fraction div_frac(fraction f1, fraction f2){
   return reduit(f);
 }
 
-fraction div_eq(fraction f1, fraction f2){
+int  frac_eq(fraction f1, fraction f2){
   f1 = reduit(f1);
   f2 = reduit(f2);
 
   if(f1.numerateur == f2.numerateur && f1.denominateur == f2.denominateur)
     return 1;
   else
-    -1;
+    return -1;
 }
 
 float tof_loat(fraction f){

@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
-const int N = 5;
+#define N 5
+
 char m[N][N];
 
 
@@ -16,8 +18,8 @@ void init_univ(){
 
 void affiche(){
   for(int i=0; i<N; i++){
-    for(int j=0; j<N; i++){
-      printf(" %d",m[i]m[j]);
+    for(int j=0; j<N; j++){
+      printf(" %d",m[i][j]);
     }
     printf("\n");
   }
@@ -64,24 +66,24 @@ void step(){
     for(int j=0; j<N; j++){
       if(m[i][j] == 0){
 	
-	int voisine = 0;
+	int voi = 0;
 	for(int v=0; v<7;v++){
 	  if(voisine(i,j,v) == 1)
-	    voisine++;
+	    voi++;
 	}
 
-	if(voisine == 3)
+	if(voi == 3)
 	  m[i][j] = 1;
 	  
       }else if(m[i][j] == 1){
 
-	int voisine = 0;
+	int voi = 0;
 	for(int v=0; v<7;v++){
 	  if(voisine(i,j,v) == 1)
-	    voisine++;
+	    voi++;
 	}
 
-	if(voisine != 2 && voisine != 3)
+	if(voi != 2 && voi != 3)
 	  m[i][j] = 0;
 	  
       }
@@ -93,6 +95,7 @@ int main(){
   srand(time(NULL));
   while(1){
     init_univ();
+    puts("\n");
     affiche();
     sleep(1);
   }
