@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+ 
 enum color{TREFLE, PIQUE, CARRE, COEUR};
 
 typedef struct Carte{
