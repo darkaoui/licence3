@@ -1,7 +1,0 @@
-let rec list_produit l = match l with
-    []   -> 1
-  | h::t -> h*list_produit t
-;;
-
-list_produit [2;4;5]
-;;

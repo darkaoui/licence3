@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.Arrays;
-
+ 
 public class Ex1_drop{
 
     static String[] lireChaines(){
