@@ -1,0 +1,3 @@
+zip:
+	zip -r filename.zip foldersource
+	unzip  filename.zip folderdestination

@@ -1,0 +1,12 @@
+1. le downcast reagi pas a la compilation et leve une exception a l'excecution
+
+2. le upcast reagit ni a la compilation ni a l'excecution,
+   peut-etre a la l'execution dans les cas tres specifiques
+
+3. l'appel sur une methode non static s'effectue sur l'objet
+
+4. l'appel d'une methode static s'effectue sur la class et non l'objet
+
+5. A la compilation les types sont verifier <<chaque methode appele doit exister dans son type>>
+
+6. 

@@ -12,7 +12,11 @@ typedef struct date{
 int dateCompare(date d1, date d2){
   if(d1.jour == d2.jour && d1.mois == d2.mois && d1.an == d2.an)
     return 0;
-  else if(d1.an < d2.an || d1.mois < d2.mois || d1.jour<d2.jour )
+  else if(d1.an < d2.an)
+    return -1;
+  else if(d1.an == d2.an &&  d1.mois < d2.mois)
+    return -1;
+  else if(d1.an == d2.an && d1.mois == d2.mois && d1.jour<d2.jour)
     return -1;
   else
     return 1;
@@ -61,5 +65,11 @@ int main(){
 
   d = demain(d);
   
-  printf("%d %d %d",d.jour,d.mois,d.an);
+  printf("%d %d %d\n",d.jour,d.mois,d.an);
+
+  date d0 = {27,02,2014};
+  date d1 = {28,03,2014};
+
+  printf("compare %d\n",dateCompare(d0,d));
+  printf("compare %d\n",dateCompare(d1,d));
 }
