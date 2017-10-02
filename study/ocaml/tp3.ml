@@ -1,4 +1,4 @@
-(* exercice 1 *)
+/(* exercice 1 *)
 
 type int_tree =
   | Nil
