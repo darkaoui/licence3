@@ -36,3 +36,21 @@ let rec elements a= match a with
 ;;
 
 elements n;;
+
+  (* exercice 2  *)
+
+let rec contient_abr e a= match a with
+  |Nil         -> false
+  |Node(n,g,d) -> n = e || contient_abr e g || contient_abr e d;;
+
+contient_abr 5 n;;
+contient_abr 9 n;;
+
+let rec ajout_abr e a = match a with
+  |Nil             -> Node(e,Nil,Nil)
+  |Node(n,g,d)     -> Node(n,ajout_abr e g, ajout_abr e d)
+;;
+
+ajout_abr 9 n;;
+
+let rec cons_abr l = match l with
