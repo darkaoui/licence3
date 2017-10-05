@@ -4,7 +4,6 @@
 
 */
 
-
 //Question 2
 const char teteDeVeau   = 0b0001;
 const char vin          = 0b0010;
