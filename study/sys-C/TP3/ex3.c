@@ -50,12 +50,44 @@ int set_max(int tab[], int taille, int *adrmax){
   return oc;
 }
 
-int remove_elem(int tab[], int taille, int x){
-  
-}
-
 void echange(int tab[],int i, int j){
   int tmp = tab[i];
   tab[i]  = tab[j];
   tab[j]  = tmp;
 }
+
+int decalage_gauche(int tab[], int taille,  int index){
+  for(int i=index; i<taille-1; i++){
+    tab[i] = tab[i+1];
+  }
+}
+
+int remove_elem(int tab[], int taille, int x){
+
+  int oc =0;
+  int newtaille = taille;
+  
+  for(int i=0; i<taille; i++){
+    if(tab[i] == x){
+
+      decalage_gauche(tab,taille,i);
+      
+      oc++;
+      newtaille--;
+    }
+  }
+
+  return newtaille;
+}
+
+
+void mirror(int tab[], int taille){
+  for(int i=0; i<taille-1; i++){
+    echange(i,taille-i);
+    if(i == (taille-i))
+      break;
+  }
+}
+
+
+
