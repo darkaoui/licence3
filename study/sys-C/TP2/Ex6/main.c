@@ -1,5 +1,7 @@
 #include "fractions.h"
 
+fraction heron(unsigned int,int);
+
 int main(){
   fraction ex_fractions[] = {{1,1},{1,2},{2,4},{15,10},{-9,3},{-5,-10},{1,-3}};
   int taille = sizeof(ex_fractions)/sizeof(ex_fractions[0]);

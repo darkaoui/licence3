@@ -1,11 +1,11 @@
 #include "fractions.h"
 
 void affiche_fraction(fraction f){
-  printf("%d/%d (%f)\n",f.numerateur,f.denominateur,((float)(f.numerateur)/f.denominateur));
+  printf("%d/%d ~ (%f)\n",f.numerateur,f.denominateur,to_float(f));
 }
 
 //on supposera que a<b
-int pgcd(int a, int b){
+unsigned int pgcd(unsigned int a, unsigned int b){
   int r = a%b;
   if(r == 0)
     return b;
@@ -17,6 +17,19 @@ fraction reduit(fraction f){
   int a,b;
   a = f.numerateur;
   b = f.denominateur;
+
+  if(b == 0 && a == 0)
+    return f;
+
+  if(b == 0 && a>0){
+    f.numerateur =1;
+    return f;
+  }
+
+  if(b == 0 && a<0){
+    f.numerateur =-1;
+    return f;
+  }
 
   if(a == b){
     f.numerateur    =1;
@@ -61,7 +74,7 @@ fraction div_frac(fraction f1, fraction f2){
   return reduit(f);
 }
 
-int  frac_eq(fraction f1, fraction f2){
+unsigned int  frac_eq(fraction f1, fraction f2){
   f1 = reduit(f1);
   f2 = reduit(f2);
 
@@ -71,11 +84,11 @@ int  frac_eq(fraction f1, fraction f2){
     return -1;
 }
 
-float tof_loat(fraction f){
-  return f.numerateur/f.denominateur;
+float to_float(fraction f){
+  return (float)f.numerateur/f.denominateur;
 }
 
-fraction of_int(int i){
+fraction of_int(unsigned int i){
   fraction f;
   f.numerateur   = i;
   f.denominateur = 1;

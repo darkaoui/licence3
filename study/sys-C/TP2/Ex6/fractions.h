@@ -6,7 +6,7 @@
 
 void affiche_fraction(fraction f);
 
-int pgcd(int a, int b);
+unsigned int pgcd(unsigned int a, unsigned int b);
 
 fraction reduit(fraction f);
 
@@ -16,12 +16,10 @@ fraction sub_frac(fraction f1, fraction f2);
 
 fraction div_frac(fraction f1, fraction f2);
 
-int frac_eq(fraction f1, fraction f2);
+unsigned int frac_eq(fraction f1, fraction f2);
 
-float tof_loat(fraction f);
+float to_float(fraction f);
 
-fraction of_int(int);
-
-fraction heron(int,int);
+fraction of_int(unsigned int);
 
 #endif
