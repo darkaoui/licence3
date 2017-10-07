@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
 //Question 5
 void echange(int *adra, int *adrb){
 
@@ -13,6 +17,8 @@ void echange(int *adra, int *adrb){
 
 //Question 7
 int read_int(int *adr){
+
+  printf("saisir:");
   
   //suppons que la suite ce limite a 10 chiffre
   char entier[11];
@@ -20,11 +26,8 @@ int read_int(int *adr){
 
   int inc =0;
 
-  while(c=getchar() != EOF && inc<10){
+  while((c=getchar()) != '\n' && inc<10){
 
-    if(c == '\n')
-      break;
-    
     if((c < '0' || c > '9'))
       return 0;
 
@@ -32,9 +35,20 @@ int read_int(int *adr){
     
   }
 
+  if(inc == 0)
+    return 0;
+  
   entier[inc+1] = '\0';
   *adr = atoi(entier);
 
   return 1;
 }
 
+
+int main(){
+  int valeur;
+  if(read_int(&valeur) == 1)
+    printf("valeur lu: %d\n",valeur);
+  else
+    printf("malfaiteur\n");
+}

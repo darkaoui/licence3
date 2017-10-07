@@ -19,9 +19,44 @@ void mirror(int[], int);
 
 
 int main(){
-  printf("hello world");
+
+  int tab[] ={3,4,5,9,7,8,9};
+  int max;
+  int oc = set_max(tab,7,&max);
+
+  printf("les occurences %d, le max %d\n", oc, max);
+
+
+  printf("la table         >");
+  for(int i=0; i<7; i++){
+    printf("%d ",tab[i]);
+  }
+  puts("\n");
+
+  mirror(tab,7);
+  printf("la table miroiter>");
+  for(int i=0; i<7; i++){
+    printf("%d ",tab[i]);
+  }
+
+  puts("\n");
+
+
+  int newt = remove_elem(tab,7,9);
+  printf("la table: element 9 supprime> ");
+  for(int i=0; i<newt; i++){
+    printf("%d ",tab[i]);
+  }
+
+  puts("\n");
+  
 }
 
+
+/*
+  definition des fonctions
+  
+ */
 
 int tab_equal(int tab1[], int tab2[], int taille){
   //Supposons que les 2 tableau sont tries
@@ -34,19 +69,21 @@ int tab_equal(int tab1[], int tab2[], int taille){
 }
 
 int set_max(int tab[], int taille, int *adrmax){
-  int *max;
-  max = tab;
+  int max;
+  max = tab[0];
 
-  int oc =0;
+  int oc = 1;
 
   for(int i=1; i<taille; i++){
-    if(*max < tab[i]){
-      max = (tab+i);
-      oc =0;
-    }else if(*max == tab[i])
+    if(max < tab[i]){
+      max = tab[i];
+      oc =1;
+    }else if(max == tab[i])
       oc++;
   }
 
+  *adrmax = max;
+  
   return oc;
 }
 
@@ -56,7 +93,7 @@ void echange(int tab[],int i, int j){
   tab[j]  = tmp;
 }
 
-int decalage_gauche(int tab[], int taille,  int index){
+void decalage_gauche(int tab[], int taille,  int index){
   for(int i=index; i<taille-1; i++){
     tab[i] = tab[i+1];
   }
@@ -66,12 +103,11 @@ int remove_elem(int tab[], int taille, int x){
 
   int oc =0;
   int newtaille = taille;
-  
+
+  //faire le decalage
   for(int i=0; i<taille; i++){
     if(tab[i] == x){
-
       decalage_gauche(tab,taille,i);
-      
       oc++;
       newtaille--;
     }
@@ -82,12 +118,10 @@ int remove_elem(int tab[], int taille, int x){
 
 
 void mirror(int tab[], int taille){
-  for(int i=0; i<taille-1; i++){
-    echange(i,taille-i);
-    if(i == (taille-i))
+  for(int i=0; i<taille; i++){
+    echange(tab,i,taille-i-1);
+    //les 2 index gauche droite ce sont rencontre
+    if( (taille-i-1-i) == 1 || (taille-i-1-i) == 0 )
       break;
   }
 }
-
-
-
