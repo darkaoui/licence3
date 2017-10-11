@@ -2,56 +2,52 @@ import java.util.*;
 
 class Calculatrice{
 
-    LinkedList pile;
+    LinkedList<Double> pile;
     Scanner sc;
 
     public Calculatrice(){
-	pile = new LinkedList();
+	pile = new LinkedList<Double>();
 	sc   = new Scanner(System.in);
     }
 
-    public empile(double d){
+    public void empile(double d){
 	pile.addLast(d);
     }
 
     public double depile(){
-	return pile.remove();
+	return pile.removeLast();
     }
 
-    public boolean isOperation(String s){
-	return (s == "+" || s == "-" ||  s == "*" || s == "/");
+    public boolean isOperation(char s){
+	return (s == '+' || s == '-' ||  s == '*' || s == '/');
     }
 
 
     public double opere(double a, double b, char op){
 
-	if(op == '+'){
+	if(op == '+')
 	    return a+b;
-	}
 	
-	if(op == '*'){
+	if(op == '*')
 	    return a*b;
-	}
 	
-	if(op == '/'){
+	if(op == '/')
 	    return a/b;
-	}
 	
-	if(op == '-'){
-	    return a-b;
-	}
+	return a-b;
+	
     }
 
-    public calcule(){
+    public void calcule(){
 	String entre = sc.nextLine();
 
 	if(isOperation(entre.charAt(0))){
 	    if(pile.size() >= 2){
-		a=depile();
-		b=depile();
-		r=opere(a,b,entre.charAt(0));
+		double a=depile();
+		double b=depile();
+		double r=opere(a,b,entre.charAt(0));
 		empile(r);
-		Sytem.out.println("result: "+r);
+		System.out.println("result: "+r);
 	    }else
 		System.out.println("Erreur");
 	}else
@@ -59,8 +55,9 @@ class Calculatrice{
 	calcule();
     }
 
-    public static void main(){
+    public static void main(String args[]){
+	Calculatrice c = new Calculatrice();
 	System.out.println("Calculatrice");
-	calcule();
+	c.calcule();
     }    
 }

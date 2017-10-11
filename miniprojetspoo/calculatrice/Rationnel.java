@@ -1,6 +1,6 @@
 import java.util.*;
 
-final class Rationnel{
+final class Rationnel implements Nombre{
 	private final int num;
 	private final int den;
 
@@ -40,7 +40,7 @@ final class Rationnel{
 		return den;
 	}
 
-	public Rationnel plus(Rationnel r){
+	public  plus(Rationnel r){
 		return new Rationnel((r.getDen()*num)+(den*r.getNum()),den*r.getDen());
 	}
 
