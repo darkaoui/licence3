@@ -1,1 +1,4 @@
-# la correction de mes TPS en licence 3 <derniere annees de fac>
+# CODE DE LA LICENCE 3
+study:   corrections de tp
+letsgo:  corrections de tp
+miniprojetspoo: miniprojets en java
