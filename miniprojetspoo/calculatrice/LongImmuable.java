@@ -6,19 +6,51 @@ final class LongImmuable implements Nombre{
     }
 
     public Object plus(Object other){
-
+	if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur+other.getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    return new Rationnel((other.getNum()+(valeur*other.getDen()),other.getDen()));
+	}
+	else{
+	    return new DoubleImmuable(valeur+other.getValeur());
+	}
     }
 
     public Object moins(Object other){
-
+	if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur-other.getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    return new Rationnel((other.getNum()-(valeur*other.getDen()),other.getDen()));
+	}
+	else{
+	    return new DoubleImmuable(valeur-other.getValeur());
+	}
     }
 
     public Object fois(Object other){
-
+	if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur*other.getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    return new Rationnel((other.getNum()*valeur,other.getDen()));
+	}
+	else{
+	    return new DoubleImmuable(valeur*other.getValeur());
+	}
     }
 
     public Object divise(Object other){
-
+	if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur/other.getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    return new Rationnel((other.getNum(),valeur*other.getDen()));
+	}
+	else{
+	    return new DoubleImmuable(valeur/other.getValeur());
+	}
     }
 
     public getValeur(){
@@ -26,9 +58,10 @@ final class LongImmuable implements Nombre{
     }
 
     public String toString(){
-	
+	return valeur+"";
     }
 
     public LongImmuable ofString(String s){
+	return new LongImmuable(Long.valueOf(s));
     }
 }
