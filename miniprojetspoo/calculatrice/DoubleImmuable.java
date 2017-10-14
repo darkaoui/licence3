@@ -1,57 +1,71 @@
-final class DoubleImmuable implements Nombre{
+ final class DoubleImmuable extends Nombre{
     private final double valeur;
 
     public DoubleImmuable(double valeur){
 	this.valeur = valeur;
     }
 
-    public Object plus(Object other){
+    public Expression plus(Expression other){
+
 	if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(valeur+other.getValeur());
+	    return new DoubleImmuable(valeur+((DoubleImmuable)other).getValeur());
+	}else if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur + ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    return new DoubleImmuable((other.getNum()/other.getDen())+valeur);
+	    Rationnel o = other;
+	    return new DoubleImmuable((o.getNum()/o.getDen())+valeur);
+	}else
+	    return new Expression(this,other,Operateur.PLUS);
+    }
+
+    public Expression moins(Expression other){
+
+	if(other instanceof DoubleImmuable){
+	    return new DoubleImmuable(valeur - ((DoubleImmuable)other).getValeur());
+	}else if(other instanceof LongImmuable){
+	    return new LongImmuable(valeur - ((LongImmuable)other).getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    Rationnel o = other;
+	    return new DoubleImmuable((o.getNum()/o.getDen())-valeur);
+	}else
+	    return new Expression(this,other,Operateur.MOINS);
+    }
+
+    public Expression fois(Expression other){
+	
+	if(other instanceof DoubleImmuable){
+	    return new DoubleImmuable(valeur * ((DoubleImmuable)other).getValeur());
+	}else if(other instanceof LongImmuable){
+	    return new DoubleImmuable(valeur * ((LongImmuable)other).getValeur());
+	}
+	else if(other instanceof Rationnel){
+	    Rationnel o = other;
+	    return new DoubleImmuable((o.getNum()/o.getDen())*valeur);
 	}
 	else{
-	    return new DoubleImmuable(valeur+other.getValeur());
+	    return new Expression(this,other,Operateur.FOIS);
 	}
     }
 
-    public Object moins(Object other){
+    public Expression divise(Expression other){
+
 	if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(valeur-other.getValeur());
+	    return new DoubleImmuable(valeur / ((DoubleImmuable)other).getValeur());
+	}else if(other instanceof LongImmuable){
+	    return new DoubleImmuable(valeur / ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    return new DoubleImmuable((other.getNum()/other.getDen())-valeur);
+	    Rationnel o = other;
+	    return new DoubleImmuable((o.getNum()/o.getDen())/valeur);
 	}
 	else{
-	    return new DoubleImmuable(valeur-other.getValeur());
+	    return new Expression(this,other,Oerateur.DIVISE);
 	}
     }
 
-    public Object fois(Object other){
-	if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(valeur*other.getValeur());
-	}
-	else if(other instanceof Rationnel){
-	    return new DoubleImmuable((other.getNum()/other.getDen())*valeur);
-	}
-	else{
-	    return new DoubleImmuable(valeur*other.getValeur());
-	}
-    }
-
-    public Object divise(Object other){
-	if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(valeur/other.getValeur());
-	}
-	else if(other instanceof Rationnel){
-	    return new DoubleImmuable((other.getNum()/other.getDen())/valeur);
-	}
-	else{
-	    return new DoubleImmuable(valeur/other.getValeur());
-	}
-    }
+    //inverse et oppose
 
     public getValeur(){
 	return this.valeur;
