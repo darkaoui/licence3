@@ -10,10 +10,10 @@
 	if(other instanceof DoubleImmuable){
 	    return new DoubleImmuable(valeur+((DoubleImmuable)other).getValeur());
 	}else if(other instanceof LongImmuable){
-	    return new LongImmuable(valeur + ((LongImmuable)other).getValeur());
+	    return new DoubleImmuable(valeur + ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new DoubleImmuable((o.getNum()/o.getDen())+valeur);
 	}else
 	    return new Expression(this,other,Operateur.PLUS);
@@ -24,10 +24,10 @@
 	if(other instanceof DoubleImmuable){
 	    return new DoubleImmuable(valeur - ((DoubleImmuable)other).getValeur());
 	}else if(other instanceof LongImmuable){
-	    return new LongImmuable(valeur - ((LongImmuable)other).getValeur());
+	    return new DoubleImmuable(valeur - ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new DoubleImmuable((o.getNum()/o.getDen())-valeur);
 	}else
 	    return new Expression(this,other,Operateur.MOINS);
@@ -41,7 +41,7 @@
 	    return new DoubleImmuable(valeur * ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new DoubleImmuable((o.getNum()/o.getDen())*valeur);
 	}
 	else{
@@ -57,17 +57,17 @@
 	    return new DoubleImmuable(valeur / ((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new DoubleImmuable((o.getNum()/o.getDen())/valeur);
 	}
 	else{
-	    return new Expression(this,other,Oerateur.DIVISE);
+	    return new Expression(this,other,Operateur.DIVISE);
 	}
     }
 
     //inverse et oppose
 
-    public getValeur(){
+    public double getValeur(){
 	return this.valeur;
     }
 

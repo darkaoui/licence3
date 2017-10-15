@@ -1,19 +1,19 @@
 import java.util.*;
 
-final class Rationnel implements Nombre{
-    private final int num;
-    private final int den;
+final class Rationnel extends Nombre{
+    private final long num;
+    private final long den;
 
-    private int pgcd(int a, int b){
-	int r=a%b;
+    private long pgcd(long a, long b){
+	long r=a%b;
 	if(r==0)
 	    return b;
 	else
 	    return pgcd(b,r);
     }
 
-    public Rationnel(int a, int b){
-	int p=pgcd(a,b);
+    public Rationnel(long a, long b){
+	long p=pgcd(a,b);
 	if(b<0){
 	    num=-(a/p);
 	    den=-(b/p);
@@ -32,17 +32,17 @@ final class Rationnel implements Nombre{
       return new Rationnel(a,b);
       }*/
 
-    public int getNum(){
+    public long getNum(){
 	return num;
     }
     
-    public int getDen(){
+    public long getDen(){
 	return den;
     }
 
     public Expression plus(Expression other){
 	if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel((o.getDen()*num)+(den*o.getNum()),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
@@ -56,21 +56,21 @@ final class Rationnel implements Nombre{
 
     public Expression moins(Expression other){
 	if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel((o.getDen()*num)-(den*o.getNum()),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
 	    return new DoubleImmuable((num/den)-((DoubleImmuable)other).getValeur());
 	}
 	else if(other instanceof LongImmuable){
-	    return this.moins(new Rationnel(other.getValeur(),1));
+	    return this.moins(new Rationnel(((LongImmuable)other).getValeur(),1));
 	}else
 	    return new Expression(this,other,Operateur.MOINS);
     }
 
     public Expression divise(Expression other){
 	if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel(num*o.getDen(),den*o.getNum());
 	}
 	else if(other instanceof DoubleImmuable){
@@ -79,12 +79,12 @@ final class Rationnel implements Nombre{
 	else if(other instanceof LongImmuable){
 	    return this.divise(new Rationnel(((LongImmuable)other).getValeur(),1));
 	}else
-	    return Expression(this,other,Operateur.DIVISE);
+	    return new Expression(this,other,Operateur.DIVISE);
     }
 
     public Expression fois(Expression other){
 	if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel(num*o.getNum(),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
@@ -93,7 +93,7 @@ final class Rationnel implements Nombre{
 	else if(other instanceof LongImmuable){
 	    return this.fois(new Rationnel(((LongImmuable)other).getValeur(),1));
 	}else
-	    return Expression(this,other,Operateur.FOIS);
+	    return new Expression(this,other,Operateur.FOIS);
     }
 
     public boolean equals(Rationnel r){

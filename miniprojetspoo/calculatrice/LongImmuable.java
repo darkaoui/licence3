@@ -1,4 +1,4 @@
- final class LongImmuable extends Nombre{
+final class LongImmuable extends Nombre{
     private final long valeur;
 
     public LongImmuable(long valeur){
@@ -7,32 +7,28 @@
 
     public Expression plus(Expression other){
 	if(other instanceof LongImmuable){
-	    LongImmuable o = other;
-	    return new LongImmuable(valeur+o.getValeur());
+	    return new LongImmuable(valeur+((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel(o.getNum()+(valeur*o.getDen()),o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
-	    DoubleImmuable o = other;
-	    return new DoubleImmuable(valeur+o.getValeur());
+	    return new DoubleImmuable(valeur+((DoubleImmuable)other).getValeur());
 	}else
 	    return new Expression(this,other,Operateur.PLUS);
     }
 
     public Expression moins(Expression other){
 	if(other instanceof LongImmuable){
-	    LongImmuable o = other;
-	    return new LongImmuable(valeur-o.getValeur());
+	    return new LongImmuable(valeur-((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel(o.getNum()-(valeur*o.getDen()),o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
-	    DoubleImmuable o = other;
-	    return new DoubleImmuable(valeur-o.getValeur());
+	    return new DoubleImmuable(valeur-((DoubleImmuable)other).getValeur());
 	}else
 	    return new Expression(this,other,Operateur.MOINS);
     }
@@ -42,7 +38,7 @@
 	    return new LongImmuable(valeur*((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
+	    Rationnel o = (Rationnel)other;
 	    return new Rationnel(o.getNum()*valeur,o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
@@ -56,8 +52,8 @@
 	    return new LongImmuable(valeur/((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
-	    Rationnel o = other;
-	    return new Rationnel((o.getNum(),valeur*o.getDen()));
+	    Rationnel o = (Rationnel)other;
+	    return new Rationnel(o.getNum(),valeur*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
 	    return new DoubleImmuable(valeur/((DoubleImmuable)other).getValeur());
@@ -65,7 +61,7 @@
 	    return new Expression(this,other,Operateur.DIVISE);
     }
 
-    public getValeur(){
+    public long getValeur(){
 	return this.valeur;
     }
 

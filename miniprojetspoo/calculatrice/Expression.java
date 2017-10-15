@@ -1,15 +1,15 @@
+class Expression{
 
-public enum Operateur{PLUS,MOINS,FOIS,DIVISE,OPP,INV}
-
-final class Expression{
-
-    final private Expression expression1;
-    final private Expression expression2;
+    private Expression expression1;
+    private Expression expression2;
     
-    final private Operateur operateur;
+    private Operateur operateur;
+
+    public Expression(){
+    }
 
     public Expression(Expression expression, Operateur operateur){
-	this.expression1 = expresion;
+	this.expression1 = expression;
 	this.expression2 = null;
 	this.operateur   = operateur;
     }
@@ -24,7 +24,7 @@ final class Expression{
 	return new Expression(this,other,Operateur.PLUS);
     }
 
-    public Expression mois(Expression other){
+    public Expression moins(Expression other){
 	return new Expression(this,other,Operateur.MOINS);
     }
 
@@ -36,51 +36,63 @@ final class Expression{
 	return new Expression(this,other,Operateur.DIVISE);
     }
 
-    public Expression inverse(Expression other){
+    public Expression inverse(){
 	return new Expression(this,Operateur.OPP);
     }
 
-    public Expression oppose(Expression other){
+    public Expression oppose(){
 	return new Expression(this,Operateur.INV);
     }
 
     public Expression calcul(Operateur op){
 	switch(op){
 	case PLUS:
-	    this.expression1.plus(expression2);
-	    break;
+	    return this.expression1.plus(expression2);
 	case MOINS:
-	    this.expression1.moins(expression2);
-	    break;
+	    return this.expression1.moins(expression2);
 	case FOIS:
-	    this.expression1.fois(expression2);
-	    break;
+	    return this.expression1.fois(expression2);
 	case DIVISE:
-	    this.expression1.divise(expression2);
-	    break;
+	    return this.expression1.divise(expression2);
 	case OPP:
-	    this.expression1.oppose(expression2);
-	    break;
-	case INV:
-	    this.expression1.inverse(expression2);
+	    return this.expression1.oppose();
+	default: //INV:
+	    return this.expression1.inverse();
 	}
     }
 
     public Expression subst(Expression other, Expression inconnue){
-         if(this.expression2 != null && this.expression1 instanceof Number && this.expression2 instanceof Number)
+         if(this.expression2 != null && this.expression1 instanceof Nombre && this.expression2 instanceof Nombre)
 	     return calcul(this.operateur);
-	 else if(this.expression2 == null && this.expression1 instanceof Number)
+	 else if(this.expression2 == null && this.expression1 instanceof Nombre)
 	     return calcul(this.operateur);
 	 else if(this.expression2 != null)
 	     return new Expression(this.expression1.subst(other,inconnue),this.expression2.subst(other,inconnue),this.operateur);
 	 else
-	     return new Expression(this.expression1.subst(other,inconnue));
+	     return new Expression(this.expression1.subst(other,inconnue),this.operateur);
+    }
+
+    private String operateurString(Operateur op){
+	switch(op){
+	case PLUS:
+	    return "+";
+	case MOINS:
+	    return "-";
+	case FOIS:
+	    return "*";
+	case DIVISE:
+	    return "/";
+	case OPP:
+	    return "!";
+	default: //INV:
+	    return "#";
+	}
     }
 
     public String toString(){
 	if(expression2 == null)
-	    return operateur+this.expression1;
+	    return operateurString(this.operateur)+this.expression1;
 	else
-	    return "("+expression1+" "+operateur+" "+expression2+")";
+	    return "("+expression1+""+operateurString(this.operateur)+""+expression2+")";
     }
 }

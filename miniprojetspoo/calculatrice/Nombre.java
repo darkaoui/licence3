@@ -1,6 +1,6 @@
-interface Nombre{
-    public Object plus(Oject other);
-    public Object moins(Object other);
-    public Object fois(Object other);
-    public Object divise(Object other);
+abstract class Nombre extends Expression{
+    abstract public Expression plus(Expression other);
+    abstract public Expression moins(Expression other);
+    abstract public Expression fois(Expression other);
+    abstract public Expression divise(Expression other);
 }
