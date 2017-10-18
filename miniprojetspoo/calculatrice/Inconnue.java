@@ -1,3 +1,5 @@
+
+
 final class Inconnue extends Expression{
     
     private final String nom;
@@ -7,7 +9,7 @@ final class Inconnue extends Expression{
     }
 
     public String toString(){
-	return getNom();
+	return this.nom;
     }
 
     public Expression subst(Expression other, Expression inconnue){

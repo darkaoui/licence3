@@ -101,6 +101,9 @@ final class Rationnel extends Nombre{
     }
 
     public String toString(){
+	if(num<0)
+	    return ("("+num+")/"+den);
+	
 	return (num+"/"+den);
     }
 

@@ -61,15 +61,22 @@ final class LongImmuable extends Nombre{
 	    return new Expression(this,other,Operateur.DIVISE);
     }
 
+    public Expression oppose(){
+	return new LongImmuable(-this.valeur);
+    }
+
     public long getValeur(){
 	return this.valeur;
     }
 
     public String toString(){
+	if(valeur<0)
+	    return "("+valeur+")";
+
 	return valeur+"";
     }
 
-    public LongImmuable ofString(String s){
+    public static LongImmuable ofString(String s){
 	return new LongImmuable(Long.valueOf(s));
     }
 }

@@ -44,8 +44,8 @@ class Expression{
 	return new Expression(this,Operateur.INV);
     }
 
-    public Expression calcul(Operateur op){
-	switch(op){
+    private Expression calcul(){
+	switch(this.operateur){
 	case PLUS:
 	    return this.expression1.plus(expression2);
 	case MOINS:
@@ -61,15 +61,31 @@ class Expression{
 	}
     }
 
+    public boolean contains(Inconnue inconnue){
+	return this.toString().contains(inconnue.toString());
+    }
+
     public Expression subst(Expression other, Expression inconnue){
-         if(this.expression2 != null && this.expression1 instanceof Nombre && this.expression2 instanceof Nombre)
-	     return calcul(this.operateur);
-	 else if(this.expression2 == null && this.expression1 instanceof Nombre)
-	     return calcul(this.operateur);
-	 else if(this.expression2 != null)
-	     return new Expression(this.expression1.subst(other,inconnue),this.expression2.subst(other,inconnue),this.operateur);
-	 else
-	     return new Expression(this.expression1.subst(other,inconnue),this.operateur);
+
+	if(this.expression2 != null){
+
+	    Expression exp2 = this.expression2.subst(other,inconnue);
+	    Expression exp1 = this.expression1.subst(other,inconnue);
+
+	    if(exp1 instanceof Nombre && exp2 instanceof Nombre)
+		return new Expression(exp1,exp2,this.operateur).calcul();
+	    else
+		return new Expression(exp1,exp2,this.operateur);
+	    
+	}else{
+	    
+	    Expression exp1 = this.expression1.subst(other,inconnue);
+	    
+	    if(exp1 instanceof Nombre)
+		return new Expression(exp1,this.operateur).calcul();
+	    else
+		return new Expression(exp1,this.operateur);
+	}
     }
 
     private String operateurString(Operateur op){
@@ -91,7 +107,7 @@ class Expression{
 
     public String toString(){
 	if(expression2 == null)
-	    return operateurString(this.operateur)+this.expression1;
+	    return operateurString(this.operateur)+"("+this.expression1+")";
 	else
 	    return "("+expression1+""+operateurString(this.operateur)+""+expression2+")";
     }

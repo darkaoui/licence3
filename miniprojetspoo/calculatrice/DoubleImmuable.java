@@ -72,10 +72,13 @@
     }
 
     public String toString(){
+	if(valeur <0.0)
+	    return "("+valeur+")";
+	
 	return valeur+"";
     }
 
-    public DoubleImmuable ofString(String s){
+    public static DoubleImmuable ofString(String s){
 	return new DoubleImmuable(Double.valueOf(s));
     }
 }
