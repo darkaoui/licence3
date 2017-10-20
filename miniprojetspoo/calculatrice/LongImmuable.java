@@ -61,6 +61,10 @@ final class LongImmuable extends Nombre{
 	    return new Expression(this,other,Operateur.DIVISE);
     }
 
+    public Expression inverse(){
+	return new LongImmuable(1/valeur);
+    }
+    
     public Expression oppose(){
 	return new LongImmuable(-this.valeur);
     }
@@ -80,3 +84,4 @@ final class LongImmuable extends Nombre{
 	return new LongImmuable(Long.valueOf(s));
     }
 }
+
