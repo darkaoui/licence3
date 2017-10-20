@@ -1,4 +1,4 @@
- final class DoubleImmuable extends Nombre{
+final class DoubleImmuable extends Nombre{
     private final double valeur;
 
     public DoubleImmuable(double valeur){
@@ -14,7 +14,7 @@
 	}
 	else if(other instanceof Rationnel){
 	    Rationnel o = (Rationnel)other;
-	    return new DoubleImmuable((o.getNum()/o.getDen())+valeur);
+	    return new DoubleImmuable(((double)o.getNum()/(double)o.getDen())+valeur);
 	}else
 	    return new Expression(this,other,Operateur.PLUS);
     }
@@ -28,7 +28,7 @@
 	}
 	else if(other instanceof Rationnel){
 	    Rationnel o = (Rationnel)other;
-	    return new DoubleImmuable((o.getNum()/o.getDen())-valeur);
+	    return new DoubleImmuable(((double)o.getNum()/(double)o.getDen())-valeur);
 	}else
 	    return new Expression(this,other,Operateur.MOINS);
     }
@@ -42,7 +42,7 @@
 	}
 	else if(other instanceof Rationnel){
 	    Rationnel o = (Rationnel)other;
-	    return new DoubleImmuable((o.getNum()/o.getDen())*valeur);
+	    return new DoubleImmuable(((double)o.getNum()/(double)o.getDen())*valeur);
 	}
 	else{
 	    return new Expression(this,other,Operateur.FOIS);
