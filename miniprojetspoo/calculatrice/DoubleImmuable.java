@@ -67,6 +67,14 @@
 
     //inverse et oppose
 
+     public Expression inverse(){
+	 return new DoubleImmuable(1/valeur);
+     }
+     
+     public Expression oppose(){
+	 return new DoubleImmuable(-1*valeur);
+     }
+
     public double getValeur(){
 	return this.valeur;
     }
