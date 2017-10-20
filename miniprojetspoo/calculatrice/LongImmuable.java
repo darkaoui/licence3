@@ -49,7 +49,7 @@ final class LongImmuable extends Nombre{
 
     public Expression divise(Expression other){
 	if(other instanceof LongImmuable){
-	    return new LongImmuable(valeur/((LongImmuable)other).getValeur());
+	    return new Rationnel(valeur,((LongImmuable)other).getValeur());
 	}
 	else if(other instanceof Rationnel){
 	    Rationnel o = (Rationnel)other;
@@ -62,7 +62,7 @@ final class LongImmuable extends Nombre{
     }
 
     public Expression inverse(){
-	return new LongImmuable(1/valeur);
+	return new Rationnel(1,valeur);
     }
     
     public Expression oppose(){
@@ -84,4 +84,3 @@ final class LongImmuable extends Nombre{
 	return new LongImmuable(Long.valueOf(s));
     }
 }
-
