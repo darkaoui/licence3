@@ -33,6 +33,12 @@ class Calculatrice{
 	return (s == '!' || s == '#');
     }
 
+    public boolean isVariable(char c){
+	int v = (int)c;
+	//code ASCII
+	return (v>=65 && v<=90) || (v>=97 && v<=122);
+    }
+
 
     public Expression opere(Expression a, Expression b, char op){
 
@@ -66,7 +72,7 @@ class Calculatrice{
 	    if(entre.isEmpty())
 		continue;
 	    else if(entre.contains("subst")){
-
+		//Operateur subst
 		char c = findInconnue(entre);
 		if(c == ' ')
 		    System.out.println("Erreur");
@@ -93,6 +99,7 @@ class Calculatrice{
 		    
 		}
 	    }else if(isOperationBinaire(entre.charAt(0))){
+		//les operateurs binaires
 		if(pile.size() >= 2){
 		    Expression b=depile();
 		    Expression a=depile();
@@ -102,13 +109,13 @@ class Calculatrice{
 		}else
 		    System.out.println("Erreur");
 	    }else if(isOperationUnaire(entre.charAt(0))){
+		//les operateur unaires
 		Expression a = depile();
 		Expression r = opere(a,entre.charAt(0));
 		empile(r);
 		System.out.println("result> "+r);
 	    }else{
 
-	    
 		if(entre.contains(".")){
 		    //On a faire avec un double
 
@@ -130,8 +137,8 @@ class Calculatrice{
 		    try{
 			empile(LongImmuable.ofString(entre));
 		    }catch(Exception e){
-
-			if(entre.length() > 2)
+			//On traite le cas d'une variable
+			if(entre.length() > 2 || !isVariable(entre.charAt(0)))
 			    System.out.println("Erreur");
 			else
 			    empile(new Inconnue(entre.charAt(0)+""));
