@@ -98,7 +98,7 @@ class Calculatrice{
 			System.out.println("Erreur");
 		    
 		}
-	    }else if(isOperationBinaire(entre.charAt(0))){
+	    }else if(isOperationBinaire(entre.charAt(0)) && entre.length() == 2){
 		//les operateurs binaires
 		if(pile.size() >= 2){
 		    Expression b=depile();
@@ -108,7 +108,7 @@ class Calculatrice{
 		    System.out.println("result> "+r);
 		}else
 		    System.out.println("Erreur");
-	    }else if(isOperationUnaire(entre.charAt(0))){
+	    }else if(isOperationUnaire(entre.charAt(0)) && entre.length() == 2){
 		//les operateur unaires
 		Expression a = depile();
 		Expression r = opere(a,entre.charAt(0));
@@ -150,6 +150,10 @@ class Calculatrice{
 
     public static void main(String args[]){
 	Calculatrice c = new Calculatrice();
+
+	System.out.println("Operateur oppose:  !");
+	System.out.println("Operateur inverse: #");
+	
 	System.out.println("Calculatrice");
 	c.calcule();
     }    
