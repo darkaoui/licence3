@@ -13,7 +13,7 @@ final class Rationnel extends Nombre{
     }
 
     public Rationnel(long a, long b){
-	long p=pgcd(a,b);
+	long p=pgcd(Math.abs(a),Math.abs(b));
 	if(b<0){
 	    num=-(a/p);
 	    den=-(b/p);
@@ -46,7 +46,7 @@ final class Rationnel extends Nombre{
 	    return new Rationnel((o.getDen()*num)+(den*o.getNum()),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable((num/den)+((DoubleImmuable)other).getValeur());
+	    return new DoubleImmuable(((double)num/(double)den)+((DoubleImmuable)other).getValeur());
 	}
 	else if(other instanceof LongImmuable){
 	    return this.plus(new Rationnel(((LongImmuable)other).getValeur(),1));
@@ -60,7 +60,7 @@ final class Rationnel extends Nombre{
 	    return new Rationnel((o.getDen()*num)-(den*o.getNum()),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable((num/den)-((DoubleImmuable)other).getValeur());
+	    return new DoubleImmuable(((double)num/(double)den)-((DoubleImmuable)other).getValeur());
 	}
 	else if(other instanceof LongImmuable){
 	    return this.moins(new Rationnel(((LongImmuable)other).getValeur(),1));
@@ -74,7 +74,7 @@ final class Rationnel extends Nombre{
 	    return new Rationnel(num*o.getDen(),den*o.getNum());
 	}
 	else if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(((double)num/den)/((DoubleImmuable)other).getValeur());
+	    return new DoubleImmuable(((double)num/(double)den)/((DoubleImmuable)other).getValeur());
 	}
 	else if(other instanceof LongImmuable){
 	    return this.divise(new Rationnel(((LongImmuable)other).getValeur(),1));
@@ -88,7 +88,7 @@ final class Rationnel extends Nombre{
 	    return new Rationnel(num*o.getNum(),den*o.getDen());
 	}
 	else if(other instanceof DoubleImmuable){
-	    return new DoubleImmuable(((double)num/den)*((DoubleImmuable)other).getValeur());
+	    return new DoubleImmuable((((double)num*((DoubleImmuable)other).getValeur())/(double)den));
 	}
 	else if(other instanceof LongImmuable){
 	    return this.fois(new Rationnel(((LongImmuable)other).getValeur(),1));
