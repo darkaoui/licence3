@@ -96,6 +96,13 @@ final class Rationnel extends Nombre{
 	    return new Expression(this,other,Operateur.FOIS);
     }
 
+    public Expression inverse(){
+	return new Rationnel(den,num);
+    }
+    public Expression oppose(){
+	return new Rationnel(-1*num,den);
+    }    
+
     public boolean equals(Rationnel r){
 	return (num==r.getNum() && den==r.getDen());
     }
